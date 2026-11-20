@@ -1,4 +1,5 @@
 import { Outlet, ScrollRestoration, useLocation } from '@tanstack/react-router'
+import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -9,9 +10,49 @@ import Cursor from '../components/Cursor'
 import ScrollProgress from '../components/ScrollProgress'
 import LeadModal from '../components/LeadModal'
 import { LeadModalProvider } from '../context/LeadModalContext'
+import { trackCustom } from '../lib/pixel'
+
+function nomeDaRota(pathname: string) {
+  if (pathname === '/') return 'home'
+  return pathname.replace(/^\//, '').replace(/\//g, '-') || 'home'
+}
 
 export default function RootLayout() {
   const { pathname } = useLocation()
+
+  // SPA PageView: o pixel inicial dispara na primeira carga. A cada mudanca
+  // de rota precisamos re-disparar manualmente pra o Pixel saber que a
+  // pessoa viu outra pagina. Pagina de modelo tambem dispara ViewContent.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.fbq?.('track', 'PageView')
+    if (pathname.startsWith('/modelos/essencia')) {
+      window.fbq?.('track', 'ViewContent', {
+        content_name: 'Essencia 21 m2',
+        content_category: 'chale-modular',
+        content_ids: ['essencia-21m2'],
+        content_type: 'product',
+        value: 84900,
+        currency: 'BRL',
+      })
+    } else if (pathname.startsWith('/modelos/a-frame')) {
+      window.fbq?.('track', 'ViewContent', {
+        content_name: 'A-Frame 18 m2',
+        content_category: 'chale-modular',
+        content_ids: ['a-frame-18m2'],
+        content_type: 'product',
+        value: 59900,
+        currency: 'BRL',
+      })
+    } else if (pathname.startsWith('/modelos')) {
+      window.fbq?.('track', 'ViewCategory', { content_category: 'chale-modular' })
+    } else if (pathname.startsWith('/pagamento')) {
+      trackCustom('ViewPricing')
+    } else if (pathname.startsWith('/como-funciona')) {
+      trackCustom('ViewProcess')
+    }
+  }, [pathname])
+
   return (
     <LeadModalProvider>
       <IntroLoader />
