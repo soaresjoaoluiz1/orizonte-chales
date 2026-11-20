@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Timer, TreePine, Hammer, KeyRound, TrendingUp, Home, FileText, HandCoins, Truck } from 'lucide-react'
+import { Timer, TreePine, Hammer, KeyRound, TrendingUp, Home, FileText, HandCoins, Truck, ArrowUpRight } from 'lucide-react'
 import Hero from '../components/Hero'
 import FAQ from '../components/FAQ'
 import Marquee from '../components/Marquee'

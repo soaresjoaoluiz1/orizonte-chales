@@ -2,21 +2,28 @@
   "name": "Orizonte Chalés Modulares",
   "short_name": "Orizonte",
   "description": "Chalés modulares em itaúba, prontos em 30 dias no seu terreno.",
-  "start_url": "/orizonte-chales/",
-  "scope": "/orizonte-chales/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0A0A0A",
   "theme_color": "#0A0A0A",
   "icons": [
     {
-      "src": "/orizonte-chales/icon-192.png",
+      "src": "/img/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/orizonte-chales/icon-512.png",
+      "src": "/img/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ]
