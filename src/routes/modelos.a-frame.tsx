@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
-import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
 import MagneticButton from '../components/MagneticButton'
-import { PLACEHOLDERS, waLink } from '../config/placeholders'
-import { trackContact } from '../lib/pixel'
+import { PLACEHOLDERS } from '../config/placeholders'
+import { useLeadModal } from '../context/LeadModalContext'
 
 const IMG = (p: string) => `/img/${p}`
 
 export default function ModelosAFrame() {
   const m = PLACEHOLDERS.MODELOS.aFrame
+  const { abrir } = useLeadModal()
   return (
     <>
       <section className="relative overflow-hidden pt-32 md:pt-40">
@@ -103,19 +103,12 @@ export default function ModelosAFrame() {
 
               <div className="mt-8">
                 <MagneticButton
-                  href={waLink(PLACEHOLDERS.WHATSAPP_MESSAGE_AFRAME)}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={trackContact}
+                  onClick={() => abrir({ modelo: 'A-Frame 18 m²', origem: 'a-frame' })}
                   className="btn-whatsapp w-full"
                 >
                   Falar sobre o A-Frame
                 </MagneticButton>
               </div>
-            </div>
-
-            <div className="mt-6">
-              <LeadForm modeloPadrao="A-Frame 18 m²" origem="a-frame" compact />
             </div>
           </aside>
         </div>

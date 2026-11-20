@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import LeadForm from '../components/LeadForm'
+import { useLeadModal } from '../context/LeadModalContext'
 import Reveal from '../components/Reveal'
 
 const IMG = (p: string) => `/img/${p}`
@@ -13,6 +13,7 @@ const passos = [
 ]
 
 export default function ComoFunciona() {
+  const { abrir } = useLeadModal()
   return (
     <>
       <section className="container-x pt-40 pb-20 md:pt-48">
@@ -64,21 +65,24 @@ export default function ComoFunciona() {
       </section>
 
       <section className="container-x mt-28 mb-20">
-        <div className="relative overflow-hidden rounded-[40px] border border-cream/10 bg-charcoal/60 p-8 grain-overlay md:p-16">
-          <div className="grid gap-12 md:grid-cols-[1.2fr_1fr]">
-            <div>
-              <Reveal>
-                <p className="label">Vamos começar</p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="mt-5 text-display-md text-cream text-balance">
-                  Em 1 dia útil, <br />
-                  <span className="text-gold">próximos passos</span>.
-                </h2>
-              </Reveal>
-            </div>
-            <LeadForm origem="como-funciona" />
-          </div>
+        <div className="relative overflow-hidden rounded-[40px] border border-cream/10 bg-charcoal/60 p-8 text-center grain-overlay md:p-16">
+          <Reveal>
+            <p className="label justify-center">Vamos começar</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-5 text-display-md text-cream text-balance">
+              Em 1 dia útil, <span className="text-gold">próximos passos</span>.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <button
+              type="button"
+              onClick={() => abrir({ origem: 'como-funciona' })}
+              className="btn-whatsapp mt-10 inline-flex"
+            >
+              Receber proposta no WhatsApp
+            </button>
+          </Reveal>
         </div>
       </section>
     </>

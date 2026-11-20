@@ -1,9 +1,11 @@
 import { Link } from '@tanstack/react-router'
 import { Instagram, ArrowUpRight } from 'lucide-react'
-import { PLACEHOLDERS, waLink } from '../config/placeholders'
+import { PLACEHOLDERS } from '../config/placeholders'
+import { useLeadModal } from '../context/LeadModalContext'
 import Reveal from './Reveal'
 
 export default function Footer() {
+  const { abrir } = useLeadModal()
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-line bg-night">
       <div className="pointer-events-none absolute -right-20 -top-40 h-[400px] w-[400px] rounded-full bg-gold/10 blur-[120px]" />
@@ -43,9 +45,13 @@ export default function Footer() {
             <p className="label">Fale conosco</p>
             <ul className="mt-6 space-y-3 text-sm text-cream/80">
               <li>
-                <a href={waLink()} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 hover:text-gold">
+                <button
+                  type="button"
+                  onClick={() => abrir({ origem: 'footer' })}
+                  className="group inline-flex items-center gap-2 hover:text-gold"
+                >
                   WhatsApp <ArrowUpRight size={14} className="transition group-hover:rotate-45" />
-                </a>
+                </button>
               </li>
               <li>
                 <a href={`mailto:${PLACEHOLDERS.EMAIL_CONTATO}`} className="hover:text-gold">

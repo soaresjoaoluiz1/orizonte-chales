@@ -1,12 +1,11 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Link } from '@tanstack/react-router'
 import { ArrowDown } from 'lucide-react'
-import { waLink, PLACEHOLDERS } from '../config/placeholders'
-import { trackContact } from '../lib/pixel'
+import { useLeadModal } from '../context/LeadModalContext'
 import MagneticButton from './MagneticButton'
 
 export default function Hero() {
+  const { abrir } = useLeadModal()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const yImg = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
@@ -94,19 +93,12 @@ export default function Hero() {
             className="mt-12 flex flex-wrap items-center gap-4"
           >
             <MagneticButton
-              href={waLink(PLACEHOLDERS.WHATSAPP_MESSAGE_ESSENCIA)}
-              target="_blank"
-              rel="noreferrer"
-              onClick={trackContact}
+              onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'hero' })}
               className="btn-whatsapp"
             >
               Quero receber proposta
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-black/10">→</span>
             </MagneticButton>
-
-            <Link to="/contato" className="btn-outline">
-              Pedir orçamento
-            </Link>
           </motion.div>
 
           <motion.div

@@ -16,7 +16,8 @@ export const PLACEHOLDERS = {
   META_PIXEL_ID: '2541960216308736',
   // Google Apps Script webhook. Deixar vazio desativa o envio pra planilha
   // sem quebrar o form. Trocar pela URL /exec do Web App do Apps Script.
-  SHEETS_WEBHOOK_URL: '',
+  SHEETS_WEBHOOK_URL:
+    'https://script.google.com/macros/s/AKfycbx10L7HXdx16D-Vb22h7MHfhbV-ocpaUy8BpvTO7-wo8bRkfHy39EKM9bgJn5gFyQg/exec',
 
   // Qualificacao do lead pelo orcamento declarado
   INVESTIMENTO_MIN_QUALIFICADO: 50000,

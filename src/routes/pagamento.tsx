@@ -1,11 +1,10 @@
 import { CheckCircle2 } from 'lucide-react'
-import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
 import MagneticButton from '../components/MagneticButton'
-import { PLACEHOLDERS, waLink } from '../config/placeholders'
-import { trackContact } from '../lib/pixel'
+import { useLeadModal } from '../context/LeadModalContext'
 
 export default function Pagamento() {
+  const { abrir } = useLeadModal()
   return (
     <>
       <section className="container-x pt-40 pb-20 md:pt-48">
@@ -64,35 +63,25 @@ export default function Pagamento() {
       </section>
 
       <section className="container-x my-28">
-        <div className="relative overflow-hidden rounded-[40px] border border-cream/10 bg-charcoal/60 p-8 md:p-16 grain-overlay">
-          <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
-            <div>
-              <Reveal>
-                <p className="label">Dúvida sobre condições?</p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <h2 className="mt-5 text-display-md text-cream text-balance">
-                  A gente faz <br />
-                  <span className="text-gold">o quadro certo</span> <br />
-                  pra sua realidade.
-                </h2>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="mt-8">
-                  <MagneticButton
-                    href={waLink()}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={trackContact}
-                    className="btn-whatsapp"
-                  >
-                    Falar sobre pagamento
-                  </MagneticButton>
-                </div>
-              </Reveal>
+        <div className="relative overflow-hidden rounded-[40px] border border-cream/10 bg-charcoal/60 p-8 text-center md:p-16 grain-overlay">
+          <Reveal>
+            <p className="label justify-center">Dúvida sobre condições?</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-5 text-display-md text-cream text-balance">
+              A gente faz <span className="text-gold">o quadro certo</span> pra sua realidade.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-10">
+              <MagneticButton
+                onClick={() => abrir({ origem: 'pagamento' })}
+                className="btn-whatsapp"
+              >
+                Receber proposta no WhatsApp
+              </MagneticButton>
             </div>
-            <LeadForm origem="pagamento" />
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

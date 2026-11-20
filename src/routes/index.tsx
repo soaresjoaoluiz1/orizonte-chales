@@ -1,15 +1,12 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Link } from '@tanstack/react-router'
-import { ArrowUpRight, Timer, TreePine, Hammer, KeyRound, TrendingUp, Home, FileText, HandCoins, Truck } from 'lucide-react'
+import { Timer, TreePine, Hammer, KeyRound, TrendingUp, Home, FileText, HandCoins, Truck } from 'lucide-react'
 import Hero from '../components/Hero'
 import FAQ from '../components/FAQ'
-import LeadForm from '../components/LeadForm'
 import Marquee from '../components/Marquee'
 import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
-import { PLACEHOLDERS, waLink } from '../config/placeholders'
-import { trackContact } from '../lib/pixel'
+import { useLeadModal } from '../context/LeadModalContext'
 
 const IMG = (p: string) => `/img/${p}`
 
@@ -44,33 +41,36 @@ export default function HomePage() {
 }
 
 function LeadCapture() {
+  const { abrir } = useLeadModal()
   return (
     <section className="relative overflow-hidden border-b border-line bg-charcoal/40 py-20 md:py-24">
       <div className="pointer-events-none absolute inset-0 -z-0">
         <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold/20 blur-[160px]" />
       </div>
       <div className="container-x relative z-10">
-        <div className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr]">
-          <div>
-            <Reveal>
-              <p className="label">Comece agora</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="mt-5 text-display-md font-medium text-cream text-balance">
-                Receba a proposta <br />
-                <span className="text-gold">direto no WhatsApp</span> <br />
-                em até 1 dia útil.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-cream/70 md:text-lg">
-                Preencha ao lado ou fale direto com nossa equipe. Enviamos preço firme, prazo exato pra sua cidade e condições de pagamento.
-              </p>
-            </Reveal>
-          </div>
-          <div>
-            <LeadForm origem="home-topo" />
-          </div>
+        <div className="mx-auto max-w-2xl text-center">
+          <Reveal>
+            <p className="label justify-center">Comece agora</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-5 text-display-md font-medium text-cream text-balance">
+              Receba a proposta <span className="text-gold">direto no WhatsApp</span> em até 1 dia útil.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-cream/70 md:text-lg">
+              Preço firme, prazo exato pra sua cidade e condições de pagamento. Preenche o formulário rápido e a gente te chama.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <button
+              type="button"
+              onClick={() => abrir({ origem: 'home-topo' })}
+              className="btn-whatsapp mt-10 inline-flex"
+            >
+              Receber proposta no WhatsApp
+            </button>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -114,6 +114,7 @@ function ValuePropsSection() {
 }
 
 function ProductSection() {
+  const { abrir } = useLeadModal()
   return (
     <section id="produto" className="relative overflow-hidden py-28 md:py-36">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-20">
@@ -149,15 +150,13 @@ function ProductSection() {
               </div>
             </Reveal>
             <Reveal delay={0.55}>
-              <a
-                href={waLink(PLACEHOLDERS.WHATSAPP_MESSAGE_ESSENCIA)}
-                target="_blank"
-                rel="noreferrer"
-                onClick={trackContact}
-                className="btn-whatsapp mt-10"
+              <button
+                type="button"
+                onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'home-produto' })}
+                className="btn-whatsapp mt-10 inline-flex"
               >
                 Quero este modelo
-              </a>
+              </button>
             </Reveal>
           </div>
 
@@ -302,6 +301,7 @@ function ProcessSection() {
 }
 
 function InvestmentSection() {
+  const { abrir } = useLeadModal()
   return (
     <section className="container-x py-28 md:py-36">
       <div className="relative overflow-hidden rounded-[32px] border border-gold/30 bg-gradient-to-br from-charcoal to-ash grain-overlay">
@@ -324,15 +324,13 @@ function InvestmentSection() {
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-8">
-                <a
-                  href={waLink(PLACEHOLDERS.WHATSAPP_MESSAGE_INVESTIR)}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={trackContact}
+                <button
+                  type="button"
+                  onClick={() => abrir({ origem: 'home-investimento' })}
                   className="btn-whatsapp"
                 >
                   Quero investir
-                </a>
+                </button>
               </div>
             </Reveal>
           </div>
@@ -473,6 +471,7 @@ function GallerySection() {
 }
 
 function ClosingCTA() {
+  const { abrir } = useLeadModal()
   return (
     <section className="container-x pb-28 md:pb-36">
       <div className="relative overflow-hidden rounded-[32px] border border-line bg-ash grain-overlay">
@@ -482,43 +481,32 @@ function ClosingCTA() {
         </div>
         <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gold/20 blur-[120px]" />
 
-        <div className="relative z-10 grid gap-12 p-8 md:grid-cols-[1.2fr_1fr] md:p-16">
-          <div>
+        <div className="relative z-10 flex flex-col items-center gap-10 p-8 text-center md:p-16">
+          <div className="max-w-2xl">
             <Reveal>
-              <p className="label">Vamos conversar</p>
+              <p className="label justify-center">Vamos conversar</p>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="mt-5 text-display-md font-medium text-cream text-balance">
-                Em 1 dia útil <br />
-                a proposta chega <br />
+                Em 1 dia útil a proposta chega{' '}
                 <span className="text-gold">no seu WhatsApp.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mt-8 max-w-md text-base leading-relaxed text-cream/70">
-                Preencha ao lado ou fale direto. Enviamos proposta com prazo exato pra sua cidade, condições de pagamento e detalhes do modelo escolhido.
+              <p className="mx-auto mt-8 max-w-md text-base leading-relaxed text-cream/70">
+                Preenche o formulário rápido. Enviamos proposta com prazo exato pra sua cidade, condições de pagamento e detalhes do modelo escolhido.
               </p>
             </Reveal>
-            <Reveal delay={0.3}>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <a
-                  href={waLink()}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={trackContact}
-                  className="btn-whatsapp"
-                >
-                  Falar no WhatsApp
-                </a>
-                <Link to="/contato" className="btn-ghost">
-                  Formulário completo <ArrowUpRight size={14} />
-                </Link>
-              </div>
-            </Reveal>
           </div>
-          <div>
-            <LeadForm origem="home-cta" />
-          </div>
+          <Reveal delay={0.3}>
+            <button
+              type="button"
+              onClick={() => abrir({ origem: 'home-cta' })}
+              className="btn-whatsapp"
+            >
+              Receber proposta no WhatsApp
+            </button>
+          </Reveal>
         </div>
       </div>
     </section>

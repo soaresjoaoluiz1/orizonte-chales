@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
-import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
 import MagneticButton from '../components/MagneticButton'
-import { PLACEHOLDERS, waLink } from '../config/placeholders'
-import { trackContact } from '../lib/pixel'
+import { PLACEHOLDERS } from '../config/placeholders'
+import { useLeadModal } from '../context/LeadModalContext'
 
 const IMG = (p: string) => `/img/${p}`
 
 export default function ModelosEssencia() {
   const m = PLACEHOLDERS.MODELOS.essencia
+  const { abrir } = useLeadModal()
   return (
     <>
       <section className="relative overflow-hidden pt-32 md:pt-40">
@@ -103,19 +103,12 @@ export default function ModelosEssencia() {
 
               <div className="mt-8">
                 <MagneticButton
-                  href={waLink(PLACEHOLDERS.WHATSAPP_MESSAGE_ESSENCIA)}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={trackContact}
+                  onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'essencia' })}
                   className="btn-whatsapp w-full"
                 >
                   Falar sobre o Essência
                 </MagneticButton>
               </div>
-            </div>
-
-            <div className="mt-6">
-              <LeadForm modeloPadrao="Essência 21 m²" origem="essencia" compact />
             </div>
           </aside>
         </div>
