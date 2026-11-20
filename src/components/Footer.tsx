@@ -62,8 +62,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 text-[11px] font-mono text-cream/50 md:flex-row md:items-center">
-          <span>© {new Date().getFullYear()} {PLACEHOLDERS.BRAND_FULL}</span>
-          <span className="uppercase tracking-[0.25em]">Feito em Araranguá</span>
+          <span>
+            © {new Date().getFullYear()} {PLACEHOLDERS.BRAND_FULL}. Todos os direitos reservados.
+          </span>
+          <span className="uppercase tracking-[0.25em]">
+            Desenvolvido por{' '}
+            <a
+              href="https://sheraos.com.br"
+              target="_blank"
+              rel="noreferrer"
+              className="text-cream/80 transition hover:text-gold"
+            >
+              Sheraos Agência, Marketing e Sistemas
+            </a>
+          </span>
         </div>
       </div>
     </footer>
