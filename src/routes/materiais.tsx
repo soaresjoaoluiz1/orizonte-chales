@@ -19,7 +19,7 @@ const blocos = [
   },
   {
     kicker: '03 · Acabamento',
-    title: 'Chaveiro de verdade',
+    title: 'Chave na mão',
     desc: 'Chega com piso, revestimento, elétrica e hidráulica. Entrega completa, você só se acomoda.',
     img: 'glow.png',
   },

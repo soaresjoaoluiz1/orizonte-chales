@@ -82,7 +82,7 @@ function ValuePropsSection() {
     { Icon: Timer, title: '30 dias no terreno', desc: 'Do pedido à chave. Sem reforma eterna, sem mão de obra.' },
     { Icon: TreePine, title: 'Itaúba maciça', desc: 'Madeira nobre de alta densidade, durável, resistente a tempo e cupim.' },
     { Icon: Hammer, title: 'Estrutura metálica', desc: 'Base em aço estrutural. Mais seguro, estável e rápido de instalar.' },
-    { Icon: Home, title: 'Chaveiro de verdade', desc: 'Piso, elétrica, hidráulica e acabamento prontos. Chega morando.' },
+    { Icon: Home, title: 'Chave na mão', desc: 'Piso, elétrica, hidráulica e acabamento prontos. Chega morando.' },
   ]
 
   return (
