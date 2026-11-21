@@ -129,7 +129,7 @@ function ProductSection() {
             <Reveal delay={0.1}>
               <h2 className="mt-5 text-display-lg font-medium text-cream">
                 Modelo <br />
-                <span className="text-gold">Essência 21 m².</span>
+                <span className="text-gold">Glow 21 m².</span>
               </h2>
             </Reveal>
             <Reveal delay={0.25}>
@@ -152,7 +152,7 @@ function ProductSection() {
             <Reveal delay={0.55}>
               <button
                 type="button"
-                onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'home-produto' })}
+                onClick={() => abrir({ modelo: 'Glow 21 m²', origem: 'home-produto' })}
                 className="btn-whatsapp mt-10 inline-flex"
               >
                 Quero este modelo
@@ -214,7 +214,7 @@ function PlantSection() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative overflow-hidden rounded-[28px] border border-line bg-charcoal/40 p-6"
           >
-            <img src={IMG('planta-medidas.jpg')} alt="Planta e medidas do chalé Essência" className="h-auto w-full rounded-2xl" />
+            <img src={IMG('planta-medidas.jpg')} alt="Planta e medidas do chalé Glow" className="h-auto w-full rounded-2xl" />
           </motion.div>
 
           <div className="space-y-3">
@@ -381,7 +381,7 @@ function InvCard({ Icon, title, desc }: { Icon: any; title: string; desc: string
 function StatsSection() {
   const stats = [
     { n: 30, suf: 'dias', d: 'do pedido à chave no terreno', literal: null as string | null },
-    { n: 21, suf: 'm²', d: 'Essência · 3 × 7,30 m', literal: null },
+    { n: 21, suf: 'm²', d: 'Glow · 3 × 7,30 m', literal: null },
     { n: 0, suf: '', d: 'pagamento entrada e entrega', literal: '30/70' },
     { n: 100, suf: '%', d: 'itaúba maciça + aço estrutural', literal: null },
   ]

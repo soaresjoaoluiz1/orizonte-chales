@@ -93,7 +93,7 @@ export default function Hero() {
             className="mt-12 flex flex-wrap items-center gap-4"
           >
             <MagneticButton
-              onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'hero' })}
+              onClick={() => abrir({ modelo: 'Glow 21 m²', origem: 'hero' })}
               className="btn-whatsapp"
             >
               Quero receber proposta

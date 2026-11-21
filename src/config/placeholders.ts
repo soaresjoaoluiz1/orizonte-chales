@@ -26,8 +26,8 @@ export const PLACEHOLDERS = {
   INSTAGRAM_URL: 'https://instagram.com/orizonte.chale',
 
   MODELOS: {
-    essencia: {
-      nome: 'Essência',
+    glow: {
+      nome: 'Glow',
       metragem: '21 m²',
       dimensoes: '3 x 7,30 m',
       preco: 'R$ 84.900',

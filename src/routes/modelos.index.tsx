@@ -6,7 +6,7 @@ import { PLACEHOLDERS } from '../config/placeholders'
 const IMG = (p: string) => `/img/${p}`
 
 export default function ModelosIndex() {
-  const { essencia, aFrame } = PLACEHOLDERS.MODELOS
+  const { glow, aFrame } = PLACEHOLDERS.MODELOS
   return (
     <>
       <section className="container-x pt-40 pb-16 md:pt-48">
@@ -28,18 +28,18 @@ export default function ModelosIndex() {
         </Reveal>
       </section>
 
-      <Marquee items={['Essência', '·', 'A-Frame', '·', 'Entregue', '·', 'Pronto', '·']} slow />
+      <Marquee items={['Glow', '·', 'A-Frame', '·', 'Entregue', '·', 'Pronto', '·']} slow />
 
       <section className="container-x py-24">
         <div className="grid gap-8 md:grid-cols-2">
           <ModelCard
-            nome={essencia.nome}
-            metragem={essencia.metragem}
-            dimensoes={essencia.dimensoes}
-            preco={essencia.preco}
-            resumo={essencia.resumo}
-            image={IMG('essencia-poster.png')}
-            to="/modelos/essencia"
+            nome={glow.nome}
+            metragem={glow.metragem}
+            dimensoes={glow.dimensoes}
+            preco={glow.preco}
+            resumo={glow.resumo}
+            image={IMG('glow-poster.png')}
+            to="/modelos/glow"
             destaque
             index={0}
           />

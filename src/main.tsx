@@ -5,7 +5,7 @@ import './styles.css'
 import RootLayout from './routes/__root'
 import HomePage from './routes/index'
 import ModelosIndex from './routes/modelos.index'
-import ModelosEssencia from './routes/modelos.essencia'
+import ModelosGlow from './routes/modelos.glow'
 import ModelosAFrame from './routes/modelos.a-frame'
 import ComoFunciona from './routes/como-funciona'
 import Materiais from './routes/materiais'
@@ -17,7 +17,7 @@ const rootRoute = createRootRoute({ component: RootLayout })
 
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: HomePage })
 const modelosRoute = createRoute({ getParentRoute: () => rootRoute, path: '/modelos', component: ModelosIndex })
-const essenciaRoute = createRoute({ getParentRoute: () => rootRoute, path: '/modelos/essencia', component: ModelosEssencia })
+const glowRoute = createRoute({ getParentRoute: () => rootRoute, path: '/modelos/glow', component: ModelosGlow })
 const aFrameRoute = createRoute({ getParentRoute: () => rootRoute, path: '/modelos/a-frame', component: ModelosAFrame })
 const comoRoute = createRoute({ getParentRoute: () => rootRoute, path: '/como-funciona', component: ComoFunciona })
 const matRoute = createRoute({ getParentRoute: () => rootRoute, path: '/materiais', component: Materiais })
@@ -28,7 +28,7 @@ const obrigadoRoute = createRoute({ getParentRoute: () => rootRoute, path: '/obr
 const routeTree = rootRoute.addChildren([
   indexRoute,
   modelosRoute,
-  essenciaRoute,
+  glowRoute,
   aFrameRoute,
   comoRoute,
   matRoute,

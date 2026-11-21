@@ -28,7 +28,7 @@ function formatWhatsApp(valor: string) {
 export default function LeadForm({ modeloPadrao, origem = 'site', compact = false, onDone }: Props) {
   const [nome, setNome] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
-  const [modelo, setModelo] = useState(modeloPadrao || 'Essência 21 m²')
+  const [modelo, setModelo] = useState(modeloPadrao || 'Modelo Glow 21 m²')
   const [faixa, setFaixa] = useState<FaixaInvestimento | ''>('')
   const [enviando, setEnviando] = useState(false)
   const [ok, setOk] = useState<null | { qualificado: boolean; whatsappUrl: string }>(null)
@@ -51,15 +51,18 @@ export default function LeadForm({ modeloPadrao, origem = 'site', compact = fals
     }
     setEnviando(true)
     const res = await enviarLead({ nome: nome.trim(), whatsapp, modelo, faixa, origem })
-    setEnviando(false)
-    setOk({ qualificado: res.qualificado, whatsappUrl: res.whatsappUrl })
-    // Pra lead qualificado, abre o WhatsApp direto em nova aba. O usuario ja ve o
-    // "recebemos seu contato" no site e o WhatsApp pronto na outra aba.
+    // Qualificado (>=50k): redireciona a ABA ATUAL direto pro WhatsApp. Pequeno delay
+    // pra garantir que o beacon do Pixel (evento Lead) chegue ao Meta antes do unload.
     if (res.qualificado) {
-      try {
-        window.open(res.whatsappUrl, '_blank', 'noopener')
-      } catch {}
+      setTimeout(() => {
+        window.location.href = res.whatsappUrl
+      }, 350)
+      // Enquanto espera o redirect, mostra "abrindo WhatsApp" pra feedback do usuario.
+      setOk({ qualificado: true, whatsappUrl: res.whatsappUrl })
+      return
     }
+    setEnviando(false)
+    setOk({ qualificado: false, whatsappUrl: res.whatsappUrl })
   }
 
   return (
@@ -87,21 +90,23 @@ export default function LeadForm({ modeloPadrao, origem = 'site', compact = fals
               <CheckCircle2 className="text-gold" size={56} strokeWidth={1.3} />
             </motion.div>
             <div>
-              <p className="font-display text-2xl text-cream md:text-3xl">Recebemos seu contato.</p>
+              <p className="font-display text-2xl text-cream md:text-3xl">
+                {ok.qualificado ? 'Abrindo o WhatsApp...' : 'Recebemos seu contato.'}
+              </p>
               <p className="mt-3 text-sm text-mist">
                 {ok.qualificado
-                  ? 'Abrimos o WhatsApp pra você continuar a conversa agora. Se não abriu, toque no botão abaixo.'
+                  ? 'Em instantes a conversa abre no WhatsApp. Se não abrir sozinho, toque no botão abaixo.'
                   : 'Em até 1 dia útil você recebe nossa mensagem com os próximos passos.'}
               </p>
             </div>
-            <a
-              href={ok.whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-night"
-            >
-              <MessageCircle size={16} /> Abrir WhatsApp
-            </a>
+            {ok.qualificado && (
+              <a
+                href={ok.whatsappUrl}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-night"
+              >
+                <MessageCircle size={16} /> Abrir WhatsApp
+              </a>
+            )}
             {onDone && (
               <button
                 type="button"
@@ -159,8 +164,8 @@ export default function LeadForm({ modeloPadrao, origem = 'site', compact = fals
                 onChange={(e) => setModelo(e.target.value)}
                 className="mt-6 w-full appearance-none border-b border-cream/15 bg-transparent py-3 text-base text-cream focus:border-gold focus:outline-none"
               >
-                <option className="bg-night" value="Essência 21 m²">
-                  Essência 21 m²
+                <option className="bg-night" value="Glow 21 m²">
+                  Glow 21 m²
                 </option>
                 <option className="bg-night" value="A-Frame 18 m²">
                   A-Frame 18 m²

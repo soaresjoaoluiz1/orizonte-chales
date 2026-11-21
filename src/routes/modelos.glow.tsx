@@ -7,8 +7,8 @@ import { useLeadModal } from '../context/LeadModalContext'
 
 const IMG = (p: string) => `/img/${p}`
 
-export default function ModelosEssencia() {
-  const m = PLACEHOLDERS.MODELOS.essencia
+export default function ModelosGlow() {
+  const m = PLACEHOLDERS.MODELOS.glow
   const { abrir } = useLeadModal()
   return (
     <>
@@ -21,7 +21,7 @@ export default function ModelosEssencia() {
               </Reveal>
               <Reveal delay={0.1}>
                 <h1 className="mt-6 text-display-lg text-cream">
-                  <span className="text-gold">Essência</span>
+                  <span className="text-gold">Glow</span>
                 </h1>
               </Reveal>
               <Reveal delay={0.2}>
@@ -51,7 +51,7 @@ export default function ModelosEssencia() {
                 transition={{ duration: 1.4, delay: 2.4, ease: [0.22, 1, 0.36, 1] }}
                 className="relative aspect-[4/5] overflow-hidden rounded-[32px] border border-cream/10 grain-overlay"
               >
-                <img src={IMG('essencia-poster.png')} alt="Essência 21 m²" className="h-full w-full object-cover" />
+                <img src={IMG('glow-poster.png')} alt="Glow 21 m²" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-night/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                   <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-cream/70">ORIZONTE / 2026 / 01</p>
@@ -103,10 +103,10 @@ export default function ModelosEssencia() {
 
               <div className="mt-8">
                 <MagneticButton
-                  onClick={() => abrir({ modelo: 'Essência 21 m²', origem: 'essencia' })}
+                  onClick={() => abrir({ modelo: 'Glow 21 m²', origem: 'glow' })}
                   className="btn-whatsapp w-full"
                 >
-                  Falar sobre o Essência
+                  Falar sobre o Glow
                 </MagneticButton>
               </div>
             </div>

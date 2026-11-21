@@ -26,11 +26,11 @@ export default function RootLayout() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     window.fbq?.('track', 'PageView')
-    if (pathname.startsWith('/modelos/essencia')) {
+    if (pathname.startsWith('/modelos/glow')) {
       window.fbq?.('track', 'ViewContent', {
-        content_name: 'Essencia 21 m2',
+        content_name: 'Glow 21 m2',
         content_category: 'chale-modular',
-        content_ids: ['essencia-21m2'],
+        content_ids: ['glow-21m2'],
         content_type: 'product',
         value: 84900,
         currency: 'BRL',
